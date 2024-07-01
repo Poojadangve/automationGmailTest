@@ -1,7 +1,9 @@
 package test.automationGmailTest.testClass;
 
-import org.junit.Assert;
+import java.util.List;
 
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import test.automationGmailTest.pageObjects.ComposeMail;
@@ -20,14 +22,20 @@ public class TestGmailClass extends BaseTest {
 		String bodyText = "Test Email Body";
 
 		LandingPage landingPage = launchApplication();
-		ComposeMail composeMail = landingPage.loginToGmailAccount(emailId, password);
+		landingPage.loginToGmailAccount(emailId, password);
 		Thread.sleep(6000);
 
+		ComposeMail composeMail = new ComposeMail(driver);
 		composeMail.composeToMail(toMailId, subjectText, bodyText);
-		composeMail.selectSocialOpt();
+		composeMail.clickOnMoreOtp();
+		composeMail.getAllMoreOtp();
+		List<WebElement> getallMoreOtp = composeMail.getAllMoreOtp();
+		composeMail.selectTargetedMoreOtp();
+		List<WebElement> allLabelOtp = composeMail.getAllLabelOtp();
+		composeMail.selectSocial();
 		composeMail.clickOnSendOtp();
+		List<WebElement> allMailList = composeMail.getAllMailList();
 		composeMail.makeStarred();
-		Thread.sleep(3000);
 		String getsubjectText = composeMail.validateSubjectText();
 		System.out.println(subjectText);
 		Assert.assertEquals(getsubjectText, subjectText);

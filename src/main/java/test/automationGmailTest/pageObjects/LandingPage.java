@@ -39,7 +39,7 @@ public class LandingPage extends AbstractComponents{
 		driver.get("https://mail.google.com/");
 	}
 	
-	public ComposeMail loginToGmailAccount(String emailId, String password)
+	public void loginToGmailAccount(String emailId, String password)
 	{
 		signInButton.click();
 		enterUsername.sendKeys(emailId);
@@ -52,10 +52,6 @@ public class LandingPage extends AbstractComponents{
 		enterPassword.sendKeys(password);
 		
 		nextButton.click();
-		
-		ComposeMail composeMail = new ComposeMail(driver);
-		return composeMail;
-
 
 	}
 

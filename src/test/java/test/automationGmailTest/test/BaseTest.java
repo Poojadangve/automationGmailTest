@@ -22,7 +22,6 @@ public class BaseTest {
 
 	public WebDriver driver;
 	public LandingPage landingPage;
-	
 
 	public WebDriver initilazeDriver() throws Exception {
 
@@ -30,8 +29,8 @@ public class BaseTest {
 		// FileInputStream fis = new
 		// FileInputStream(System.getProperty("user.dir")+"//src//main//java//rahulShettyAcademy//resources//data.properties");
 
-		FileInputStream fis = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//test//automationGmailTest//resources//data.properties");
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")
+				+ "//src//main//java//test//automationGmailTest//resources//data.properties");
 		prop.load(fis);
 
 		// String browserName = prop.getProperty("browser");
@@ -40,7 +39,6 @@ public class BaseTest {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setExperimentalOption("debuggerAddress", "localhost:9222");
-
 
 			driver = new ChromeDriver(options);
 
@@ -61,26 +59,23 @@ public class BaseTest {
 		return driver;
 
 	}
-	
-	public String getScreenShot(String testcaseName, WebDriver driver) throws Exception
-	{
-		TakesScreenshot ts = (TakesScreenshot)driver;
-		
+
+	public String getScreenShot(String testcaseName, WebDriver driver) throws Exception {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+
 		File src = ts.getScreenshotAs(OutputType.FILE);
-	
-		File file = new File(System.getProperty("user.dir")+"//reports"+testcaseName+ ".png");
-	
+
+		File file = new File(System.getProperty("user.dir") + "//reports" + testcaseName + ".png");
+
 		FileUtils.copyFile(src, file);
-		
-		return System.getProperty("user.dir")+"//reports"+testcaseName+ ".png";
+
+		return System.getProperty("user.dir") + "//reports" + testcaseName + ".png";
 	}
 
 	@BeforeMethod(alwaysRun = true)
 	public LandingPage launchApplication() throws Exception {
 		driver = initilazeDriver();
-
 		landingPage = new LandingPage(driver);
-
 		landingPage.goTo();
 		return landingPage;
 

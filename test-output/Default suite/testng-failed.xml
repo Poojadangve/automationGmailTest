@@ -5,7 +5,8 @@
     <classes>
       <class name="test.automationGmailTest.testClass.TestGmailClass">
         <methods>
-          <include name="runTest"/>
+          <include name="automateGmail"/>
+          <include name="launchApplication"/>
         </methods>
       </class> <!-- test.automationGmailTest.testClass.TestGmailClass -->
     </classes>
